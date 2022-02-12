@@ -95,32 +95,32 @@ router.get('/temperament', async (req, res) => {
     try {
         const temperamento = await Temperamento.findAll()
 
-        const {
-            data
-        } = await axios.get(`https://api.thedogapi.com/v1/breeds`)
+        // const {
+        //     data
+        // } = await axios.get(`https://api.thedogapi.com/v1/breeds`)
 
-        let allDogs = data.map(el => {
-            return {
-                temperamento: el.temperament
-            }
-        })
-        let temperament = []
+        // let allDogs = data.map(el => {
+        //     return {
+        //         temperamento: el.temperament
+        //     }
+        // })
+        // let temperament = []
 
-        allDogs.forEach(el => {
-            if (!temperament.includes(el.temperamento)) {
-                temperament.push(el.temperamento)
-            }
-        });
-        temperament = temperament.join(' ').split(' ')
-        temperament = temperament.filter((item, index) => {
-            return temperament.indexOf(item) === index
-        })
-        temperament = temperament.map(el => {
-            return {
-                name: el.replace(',', '')
-            }
-        })
-        const addTemp = await Temperamento.bulkCreate(temperament)
+        // allDogs.forEach(el => {
+        //     if (!temperament.includes(el.temperamento)) {
+        //         temperament.push(el.temperamento)
+        //     }
+        // });
+        // temperament = temperament.join(' ').split(' ')
+        // temperament = temperament.filter((item, index) => {
+        //     return temperament.indexOf(item) === index
+        // })
+        // temperament = temperament.map(el => {
+        //     return {
+        //         name: el.replace(',', '')
+        //     }
+        // })
+        // const addTemp = await Temperamento.bulkCreate(temperament)
 
         res.json(temperamento)
     } catch (error) {
